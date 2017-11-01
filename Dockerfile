@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM afalko/alpine-java:2
 
 LABEL version="0.1"
 
