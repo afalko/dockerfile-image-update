@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build and Test') {
             steps {
-			    sh "docker --rm -v `pwd`:/tmp/ws maven bash -c 'cd /tmp/ws; mvn --quiet --batch-mode install"
+			    sh "docker --rm -v `pwd`:/tmp/ws maven bash -c 'cd /tmp/ws; mvn --quiet --batch-mode install'"
                 sh "docker build -t afalko/dockerfile-image-update:${BUILD_ID} ."
             }
         }
