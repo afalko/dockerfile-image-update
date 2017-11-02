@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build and Test') {
             steps {
-			    sh "mvn --quiet --batch-mode install"
+			    sh "docker --rm -v `pwd`:/tmp/ws maven bash -c 'cd /tmp/ws; mvn --quiet --batch-mode install"
                 sh "docker build -t afalko/dockerfile-image-update:${BUILD_ID} ."
             }
         }
@@ -22,6 +22,11 @@ pipeline {
             }
         }
         stage('Update Docker Images') {
+            when {
+                expression {
+                    BRANCH_NAME == "master"
+                }
+            }
 		    environment {
 				git_api_url = 'https://api.github.com'
 				git_api_token = credentials('DOCKERFILE_IMAGE_UPDATE_TOKEN')
