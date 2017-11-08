@@ -1,4 +1,4 @@
-FROM afalko/alpine-java:16
+FROM afalko/alpine-java:17
 
 LABEL version="0.1"
 
